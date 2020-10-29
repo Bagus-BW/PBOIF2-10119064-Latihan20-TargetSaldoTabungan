@@ -5,6 +5,7 @@
  */
 package pboif2.pkg10119064.latihan20.targetsaldotabungan;
 
+import java.util.Scanner;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 
@@ -18,8 +19,9 @@ import java.text.DecimalFormatSymbols;
  */
 public class PBOIF210119064Latihan20TargetSaldoTabungan {
     
-    public static void targetSaldoTabungan(double saldoAwal){
-        double saldoAkhir = 0;
+    public static void targetSaldoTabungan(double saldoAwal, double bunga){
+        double saldoAkhir = 0,
+               bungabulan;
         int i = 1;
         
         //Format number
@@ -32,8 +34,10 @@ public class PBOIF210119064Latihan20TargetSaldoTabungan {
         
         kursIndonesia.setDecimalFormatSymbols(formatRp);
         
+        bungabulan = bunga/100;
+        
         while(saldoAkhir <= 6000000){
-            saldoAkhir = (saldoAwal * 0.08) + saldoAwal;
+            saldoAkhir = (saldoAwal * bungabulan) + saldoAwal;
             System.out.printf("Saldo di bulan ke-" + i + " %s %n", kursIndonesia.format(saldoAkhir));
             saldoAwal = saldoAkhir;
             i++;
@@ -45,10 +49,18 @@ public class PBOIF210119064Latihan20TargetSaldoTabungan {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        double saldoAwal;
+        double saldoAwal, bunga;
         
-        saldoAwal = 3500000;
-        targetSaldoTabungan(saldoAwal);
+        Scanner keyboard = new Scanner(System.in);
+        
+        System.out.print("Masukkan saldo awal : ");
+        saldoAwal = keyboard.nextDouble();
+        
+        System.out.print("Masukkan bunga/bulan(8%) : ");
+        bunga = keyboard.nextInt();
+        
+        System.out.println("");
+        targetSaldoTabungan(saldoAwal, bunga);
     }
     
 }
