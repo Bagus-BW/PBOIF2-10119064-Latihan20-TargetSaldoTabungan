@@ -5,6 +5,9 @@
  */
 package pboif2.pkg10119064.latihan20.targetsaldotabungan;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+
 /**
  *
  * @author Bagus_24
@@ -19,9 +22,19 @@ public class PBOIF210119064Latihan20TargetSaldoTabungan {
         double saldoAkhir = 0;
         int i = 1;
         
+        //Format number
+        DecimalFormat kursIndonesia = (DecimalFormat) DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+        
+        kursIndonesia.setDecimalFormatSymbols(formatRp);
+        
         while(saldoAkhir <= 6000000){
             saldoAkhir = (saldoAwal * 0.08) + saldoAwal;
-            System.out.printf("Saldo di bulan ke-" + i + " Rp. %,1.0f%n", Math.floor(saldoAkhir));
+            System.out.printf("Saldo di bulan ke-" + i + " %s %n", kursIndonesia.format(saldoAkhir));
             saldoAwal = saldoAkhir;
             i++;
         }
